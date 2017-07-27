@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<title>AwesomeAlert</title>
+	<style>
+		*{box-sizing: border-box;}
+	</style>
+</head>
+<body>
+	<button onclick="alert('Awesome Alert!')"> alert('Awesome Alert!') </button>
+	
+
+	<br><hr><br><br><br>
+
+
+	<button onclick="myConfirm()">Confirm Alert</button>
+	<p id="demo"></p>
+	<script>
+		function myConfirm() {
+	    var txt;
+	    if (confirm("Press a button!") == true) {
+	        txt = "You pressed OK!";
+	    } else {
+	        txt = "You pressed Cancel!";
+	    }
+	    document.getElementById("demo").innerHTML = txt;
+		}
+	</script>
+
+
+	<br><hr><br><br><br>
+
+
+	<p>Click the button to demonstrate the prompt box.</p>
+	<button onclick="myPrompt()">Try it</button>
+	<p id="demo"></p>
+	<script>
+	function myPrompt() {
+		var person = prompt("Please enter your name", "Harry Potter");
+		if (person != null) {
+		  document.getElementById("demo").innerHTML =
+		  "Hello " + person + "! How are you today?";
+		}
+	}
+	</script>
+
+
+
+<div id="aa-fullscreen" style="display:none; position:fixed; left:0; top:0; right:0; bottom: 0; background-color:rgba(0,0,0,.5); z-index:999;">
+	<div id="aa-container" style="width: 633px; position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);transform:-webkit-translate(-50%, -50%);transform:-moz-translate(-50%, -50%);transform:-ms-translate(-50%, -50%);">
+		<div id="aa-close" style="position:relative; float:right; margin-top:-30px; cursor: pointer;">X</div>
+		<div id="aa-content" style="position:relative; float:left; margin:0 auto; width: 100%; padding: 50px 30px; background-color: #fff; border-radius: 5px; z-index: 1000;"></div>
+	</div>
+</div>
+<script>
+	(function() {
+		var aaFs = document.getElementById("aa-fullscreen");
+    var aaC = document.getElementById("aa-content");
+    
+    // ALERT
+    window.alert = function(msg) {
+	    aaFs.style.display="block";
+	    aaC.innerHTML = msg;
+    };
+
+
+    // CONFIRM
+    window.confirm = function(msg, doYes) {
+	   	// AwesomeAlert'ı Göster
+	    aaFs.style.display="block";
+	    aaC.innerHTML = msg +"<br><hr><br>"+doYes;
+
+	   	// Confirm'i boz
+	    UglyAlert.apply(finish);
+    };
+
+    // PROMPT
+    window.prompt = function(msg, doYes) {
+	   	// AwesomeAlert'ı Göster
+	    aaFs.style.display="block";
+	    aaC.innerHTML = msg +"<br><hr><br>"+doYes;
+
+	   	// Prompt'u boz
+	    UglyAlert.apply(finish);
+    };
+
+
+    // AWESOME ALERT CLOSE
+		document.getElementById("aa-close").onclick = function(){
+			aaC.innerHTML='';
+			aaFs.style.display="none";
+		}
+	})();
+</script>
+</body>
+</html>
